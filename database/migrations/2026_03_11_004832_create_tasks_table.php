@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name',100);
-            $table->enum('choices',['pendente','em andamento','finalizado'])->default('pendente');
+            $table->enum('status',['pendente','em andamento','finalizado'])->default('pendente');
             $table->boolean('checked')->default(true);
             $table->mediumText('description');
             $table->timestamps();
