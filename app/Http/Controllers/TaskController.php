@@ -39,7 +39,6 @@ class TaskController extends Controller
 
     public function updateChecked(task $tasks)
     {
-
         $tasks->checked = !$tasks->checked;
         $tasks->save();
 

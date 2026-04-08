@@ -22,5 +22,7 @@
         
         <button type="submit">CRIAR</button>
     </form>
+
+    <a href="{{ route('tasks.index') }}">voltar</a>
 </body>
 </html>
