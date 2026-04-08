@@ -27,17 +27,26 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    public function edit()
+    public function edit(Request $request)
     {
 
     }
 
-    public function update()
+    public function update(Request $request)
     {
 
     }
 
-    public function destroy()
+    public function updateChecked(task $tasks)
+    {
+
+        $tasks->checked = !$tasks->checked;
+        $tasks->save();
+
+        return redirect()->route('tasks.index');
+    }
+
+    public function destroy(Request $request)
     {
 
     } 
