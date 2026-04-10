@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskPostRequest;
 use Illuminate\Http\Request;
 use App\Models\task;
 use Illuminate\Support\Facades\DB;
@@ -20,8 +21,10 @@ class TaskController extends Controller
         return view('tasks.create');
     }
 
-    public function store(Request $request)
+    public function store(TaskPostRequest $request)
     {
+        $request = $request->validate();
+
        DB::transaction(function() use($request){
             task::create($request->all());
        });
