@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\task;
-use Illuminate\Console\View\Components\Task as ComponentsTask;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -22,7 +22,9 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        task::create($request->all());
+       DB::transaction(function() use($request){
+            task::create($request->all());
+       });
 
         return redirect()->route('tasks.index');
     }
