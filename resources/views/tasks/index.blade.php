@@ -15,20 +15,24 @@
                 <p>status: {{$task->status}}</p>
                 <p>nome: {{$task->name}}</p>
                 @if($task->description) <p>descrição:{{$task->description}}</p> @else <p>descrição:nenhuma descrição</p>@endif 
-                <p>criando em: {{$task->created_at}}</p>
-                <p>atualizado em: {{$task->updated_at}}</p>
+                <p>criando em: {{$task->created_at->format('d/m/Y H:i')}}</p>
+                <p>atualizado em: {{$task->updated_at->format('d/m/Y H:i')}}</p>
                 
-                <form method="POST" action="{{ route('tasks.updateChecked',$task->id) }}">
+               <div>
+                 <form method="POST" action="{{ route('tasks.updateChecked',$task->id) }}">
                     @csrf
                     @method('PATCH')
                     <button type="submit">{{$task->checked}}</button>
                 </form>
+               </div>
 
-                <form method="POST" action="">
+                <div>
+                    <form method="POST" action="{{ route('tasks.destroy', $task->id) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit">DELETAR</button>
                 </form>
+                </div>
 
                 <a>editar</a>
            </div>

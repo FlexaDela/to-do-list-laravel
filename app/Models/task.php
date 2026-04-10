@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\TaskStatus;
 
 class task extends Model
 {
@@ -16,6 +17,12 @@ class task extends Model
         'checked',
         'description'
     ];
+    
+    protected $casts = [
+        'status' => TaskStatus::class,
+        'checked' => 'boolean',
+    ];
+
     #ordenar por data
     protected static function booted()
     {
