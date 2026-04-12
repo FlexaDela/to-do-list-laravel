@@ -23,10 +23,9 @@ class TaskController extends Controller
 
     public function store(TaskPostRequest $request)
     {
-        $request = $request->validate();
 
        DB::transaction(function() use($request){
-            task::create($request->all());
+            task::create($request->validate());
        });
 
         return redirect()->route('tasks.index');
@@ -45,8 +44,10 @@ class TaskController extends Controller
 
     public function updateChecked(task $task)
     {
-        $task->checked = !$task->checked;
-        $task->save();
+        DB::transaction(function() use($task){
+            $task->checked = !$task->checked;
+            $task->save();
+        });
 
         return redirect()->route('tasks.index');
     }
