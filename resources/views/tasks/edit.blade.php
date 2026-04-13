@@ -8,25 +8,30 @@
 <body>
     <h1>EDITAR TAREFA</h1>
     
-    <form method="POST" action="{{ route('tasks.update') }}">
+    <form method="POST" action="{{ route('tasks.update', $tasks->id) }}">
         @csrf
         @method('patch')
+
         <div>
             <label for="name">Nome da tarefa:</label>
-            <input type="text" id="name" name="name" placeholder="Ex: estudar laravel" required>
+            <input type="text" id="name" name="name" value="{{ $tasks->name }}" required>
         </div>
 
         <div>
-           <select name='status'>
-                @foreach ($task as )
-                    
+            <label for="status">Status</label>
+            <select name="status" id="status">
+                @foreach(\App\Enums\TaskStatus::cases() as $status)
+                    <option value="{{ $status->value }}" 
+                        {{ old('status', $tasks->status->value ?? $tasks->status) == $status->value ? 'selected' : '' }}>
+                        {{ ucfirst($status->value) }}
+                    </option>
                 @endforeach
-           </select>
+            </select>
         </div>
-
+        
         <div>
             <label for="description">Descrição:</label>
-            <textarea type="text" id="description"></textarea>
+            <textarea id="description" name="description" rows="5">{{ $tasks->description }}</textarea>
         </div>
         
         <button type="submit">ATUALIZAR</button>

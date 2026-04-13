@@ -21,15 +21,14 @@
                         <th scope="col">Tarefa</th>
                         <th scope="col">Data de criação</th>
                         <th scope="col">Ultima atualização</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
+                        <th scope="col">AÇÕES</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($tasks as $task)
                     <tr>
                         <td>
-                            <form action="" method="post" id="form-check-{{ $task->id }}">
+                            <form action="{{ route('tasks.updateChecked', $task->id) }}" method="post" id="form-check-{{ $task->id }}">
                                 @csrf
                                 @method('PATCH')
                                 <div class="form-check d-flex justify-content-center">
@@ -42,7 +41,7 @@
                             {{ $task->status }}
                         </td>
                         
-                        <td class="{{ $task->checked ? 'text-decoration-line-through text-muted' : '' }}">
+                        <td class="{{ $task->checked == 0 ? 'text-decoration-line-through text-muted' : '' }}">
                             {{ $task->name }}
                         </td>
 
@@ -56,10 +55,10 @@
 
                         <td class="text-center">
                             <div class="btn-group px-5" role="group">
-                                <a href="" class="btn btn-sm btn-outline-info"> Ver</a>
-                                <a href="" class="btn btn-sm btn-outline-warning">Editar</a>
+                                <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-sm btn-outline-info"> Ver</a>
+                                <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-outline-warning">Editar</a>
 
-                                <form action="" method="post" class="d-inline">
+                                <form action="{{ route('tasks.destroy', $task->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger"

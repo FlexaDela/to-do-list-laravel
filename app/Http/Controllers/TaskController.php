@@ -25,7 +25,7 @@ class TaskController extends Controller
     {
 
        DB::transaction(function() use($request){
-            task::create($request->validate());
+            task::create($request->validated());
        });
 
         return redirect()->route('tasks.index');
@@ -39,7 +39,14 @@ class TaskController extends Controller
 
     public function update(Request $request,task $task)
     {
-        return redirect()->route('tasks.edit');
+        $task->update($request->all());
+
+        return redirect()->route('tasks.edit', $task->id);
+    }
+
+    public function show(task $task)
+    {
+        return view('tasks.show')->with('task', $task);
     }
 
     public function updateChecked(task $task)
@@ -49,7 +56,7 @@ class TaskController extends Controller
             $task->save();
         });
 
-        return redirect()->route('tasks.index');
+        return redirect()->back();
     }
 
     public function destroy(task $task)

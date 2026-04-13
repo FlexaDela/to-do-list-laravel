@@ -7,7 +7,6 @@ Route::get('/', function() {
     return redirect('/tasks');
 });
 
-Route::resource('/tasks', TaskController::class)
-    ->except(['show']);
+Route::resource('/tasks', TaskController::class);
 
-Route::post('/tasks/verificador/{tasks}/', [TaskController::class,'updateChecked'])->name('tasks.updateChecked');
+Route::patch('/tasks/verificador/{task}/', [TaskController::class,'updateChecked'])->name('tasks.updateChecked');
