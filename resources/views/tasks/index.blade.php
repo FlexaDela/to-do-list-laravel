@@ -10,6 +10,10 @@
 <body>
     <h1 class="container mt-5">GERENCIADOR TODO-LIST</h1>
     <a href="{{ route('tasks.create') }}">CRIAR TAREFA</a>
+    <form method="post" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit">logout</button>
+    </form>
 
     @if ($tasks->isNotEmpty())
         <div class="table-responsive">

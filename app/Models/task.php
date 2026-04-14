@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\TaskStatus;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class task extends Model
 {
@@ -13,6 +14,7 @@ class task extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
         'status',
         'checked',
         'description'
@@ -29,5 +31,10 @@ class task extends Model
         self::addGlobalScope('ordered', function(Builder $builder){
             $builder->orderBy('created_at','asc');
         });
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
