@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         return view('login');
     }
 
@@ -21,9 +22,13 @@ class UserController extends Controller
         
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('tasks.index');
+            return redirect()->intended(route('tasks.index'));
         }
-    
+
+
+        return back()->withErrors([
+            'email' => 'As credenciais fornecidas não correspondem aos nossos registros.',
+        ]);    
     }
 
     public function register()
