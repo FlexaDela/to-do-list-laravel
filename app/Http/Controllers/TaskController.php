@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TaskPostRequest;
 use Illuminate\Http\Request;
 use App\Models\task;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
@@ -23,11 +24,12 @@ class TaskController extends Controller
 
     public function store(TaskPostRequest $request)
     {
+        $data = $request->validated();
 
-       DB::transaction(function() use($request){
-            task::create($request->validated());
-       });
-
+        DB::transaction(function() use($data){
+            Auth::user()->tasks()->create($data);
+        });
+        
         return redirect()->route('tasks.index');
     }
 

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
-use App\Http\Middleware\UsuarioCadastrado;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('user-not-logged')->group(function () {
@@ -12,11 +11,11 @@ Route::middleware('user-not-logged')->group(function () {
     Route::post('/registrar',[UserController::class,'registerConfirm'])->name('registerConfirm');
     });
     
-    Route::middleware('user-logged')->group(function() {
-        Route::get('/', function() {
-            return redirect('/tasks');
-            });
-        Route::resource('/tasks', TaskController::class);
-        Route::patch('/tasks/verificador/{task}/', [TaskController::class,'updateChecked'])->name('tasks.updateChecked');
-        Route::post('/logout',[UserController::class,'logout'])->name('logout');
+Route::middleware('user-logged')->group(function() {
+    Route::get('/', function() {
+        return redirect('/tasks');
+        });
+    Route::resource('/tasks', TaskController::class);
+    Route::patch('/tasks/verificador/{task}/', [TaskController::class,'updateChecked'])->name('tasks.updateChecked');
+    Route::post('/logout',[UserController::class,'logout'])->name('logout');
 });

@@ -7,7 +7,12 @@
 </head>
 <body>
     <h1>CRIAR TAREFA</h1>
-    
+
+    @if ($errors)
+        <div style="color: red;">
+            {{ $errors }}
+        </div>
+    @endif
     <form method="POST" action="{{ route('tasks.store') }}">
         @csrf
         <div>
