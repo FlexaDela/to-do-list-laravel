@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $tasks = task::all();
+        
+        $tasks = Auth::user()->tasks()->get();
 
        return view('tasks.index')->with('tasks', $tasks);
     }
@@ -29,7 +30,7 @@ class TaskController extends Controller
         DB::transaction(function() use($data){
             Auth::user()->tasks()->create($data);
         });
-        
+
         return redirect()->route('tasks.index');
     }
 
