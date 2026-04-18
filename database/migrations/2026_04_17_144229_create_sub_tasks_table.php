@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('sub_tasks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('task_id')->constrained()->onDelete('cascade');
+            $table->string('name',100);
+            $table->enum('status',['proridade','importante','conceito'])->default('conceito');
+            $table->boolean('checked')->default(true);
+            $table->mediumText('description')->nullable();
             $table->timestamps();
         });
     }

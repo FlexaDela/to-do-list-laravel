@@ -12,7 +12,7 @@ class UpdateSubTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class UpdateSubTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['min:3', 'max:100','string'],
         ];
     }
 }
