@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name',100);
-            $table->enum('priority',['initial','developing','finished'])->default('initial');
+            $table->enum('phase',['initial','developing','finished'])->default('initial');
             $table->boolean('status')->default(true);
             $table->mediumText('description')->nullable();
             $table->timestamps();

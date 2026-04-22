@@ -9,10 +9,11 @@
 </head>
 <body>
     <h1 class="container mt-5">TAREFA {{ $task->name }}</h1>
-        <div>status: {{ $task->status}}</div>
+        <div>PRIORIDADE: {{ $task->phase}}</div>
         <div>DESCRIÇÃO:{{ $task->description}}</div>
-        <div>Finalizado:{{ $task->chcked}}</div>
-        <div>Finalizado:{{ $task->created_at}}</div>
+        <div>STATUS:{{ $task->status}}</div>
+        <div>DATA DE CRIAÇÃO:{{ $task->created_at}}</div>
+        <div>ULTIMA ATUALIZAÇÃO:{{ $task->updated_at}}</div>
     <a href="{{ route('tasks.index') }}">VOLTAR</a>
     <a href="{{ route('tasks.edit', $task->id) }}">Editr tarefa</a>
 </body>

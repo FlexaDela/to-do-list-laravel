@@ -42,10 +42,10 @@
                         </td>
 
                         <td>
-                            {{ $task->status }}
+                            {{ $task->phase }}
                         </td>
-                        
-                        <td class="{{ $task->checked == 0 ? 'text-decoration-line-through text-muted' : '' }}">
+
+                        <td class="{{ $task->status == 0 ? 'text-decoration-line-through text-muted' : '' }}">
                             {{ $task->name }}
                         </td>
 
@@ -66,7 +66,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger"
-                                    onclick="return confirm('Confirmar exclusão?')"> 
+                                    onclick="return confirm('Confirmar exclusão?')">
                                         Deletar
                                     </button>
                                 </form>
@@ -77,10 +77,10 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>     
+        </div>
     @else
         <p>Não tem tarefas cadastradas</p>
     @endif
-    
+
 </body>
 </html>

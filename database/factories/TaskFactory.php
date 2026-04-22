@@ -18,14 +18,14 @@ class TaskFactory extends Factory
      *
      * @var class-string<\Illuminate\Database\Eloquent\Model>
      */
-    
+
     protected $model = task::class;
 
     public function definition(): array
     {
         return [
             'name' => $this->faker->sentence(2),
-            'priority' => $this->faker->randomElement(TaskPriority::cases()),
+            'phase' => $this->faker->randomElement(TaskPriority::cases()),
             'status' => $this->faker->boolean(0.5),
             'description' => $this->faker->text(100),
             'user_id' => User::factory(),

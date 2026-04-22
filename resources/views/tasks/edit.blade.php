@@ -18,12 +18,12 @@
         </div>
 
         <div>
-            <label for="priority">Status</label>
-            <select name="priority" id="priority">
-                @foreach(\App\Enums\TaskPriority::cases() as $priority)
-                    <option value="{{ $priority->value }}"
-                        {{ old('priority', $priority->status->value ?? $priority->status) == $priority->value ? 'selected' : '' }}>
-                        {{ ucfirst($priority->value) }}
+            <label for="phase">Fase</label>
+            <select name="phase" id="phase">
+                @foreach(\App\Enums\TaskPriority::cases() as $phase)
+                    <option value="{{ $phase->value }}"
+                        {{ old('phase', $tasks->phase->value ?? $tasks->phase) == $phase->value ? 'selected' : '' }}>
+                        {{ ucfirst($phase->value) }}
                     </option>
                 @endforeach
             </select>

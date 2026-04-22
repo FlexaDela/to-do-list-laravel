@@ -17,12 +17,12 @@ class SubTask extends Model
 
     protected $fillable = [
         'name',
-        'priority',
+        'phase',
         'status',
         ];
 
     protected $casts = [
-        'priority' => SubTaskPriority::class,
+        'phase' => SubTaskPriority::class,
         'status' => 'boolean',
     ];
 

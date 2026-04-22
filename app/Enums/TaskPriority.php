@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum TaskPriority: string
 {
-    case INITIAL = 'initial';
-    case DEVELOPING = 'developing';
-    case FINISHED = 'finished';
+    case INICIAL = 'initial';
+    case DESENVOLVIMENTO = 'developing';
+    case FINALIZADO = 'finished';
 }

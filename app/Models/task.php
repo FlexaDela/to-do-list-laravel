@@ -19,13 +19,13 @@ class task extends Model
 
     protected $fillable = [
         'name',
-        'priority',
+        'phase',
         'status',
         'description'
     ];
 
     protected $casts = [
-        'priority' => TaskPriority::class,
+        'phase' => TaskPriority::class,
         'status' => 'boolean',
     ];
 

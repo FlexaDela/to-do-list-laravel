@@ -24,7 +24,7 @@ class SubTaskFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(2),
-            'priority' => $this->faker->randomElement(SubTaskPriority::cases()),
+            'phase' => $this->faker->randomElement(SubTaskPriority::cases()),
             'status' => $this->faker->boolean(0.5),
             'task_id' => task::factory(),
         ];
