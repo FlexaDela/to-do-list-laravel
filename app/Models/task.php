@@ -2,27 +2,31 @@
 
 namespace App\Models;
 
+use App\Enums\TaskPriority;
+use Database\Factories\TaskFactory;
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+
+#[UseFactory(TaskFactory::class)]
 class task extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
+        'priority',
         'status',
-        'checked',
         'description'
     ];
-    
+
     protected $casts = [
-        'status' => TaskStatus::class,
-        'checked' => 'boolean',
+        'priority' => TaskPriority::class,
+        'status' => 'boolean',
     ];
 
     #ordenar por data

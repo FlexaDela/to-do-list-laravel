@@ -2,7 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Enums\TaskPriority;
 use App\Models\Model;
+use App\Models\task;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -10,15 +13,22 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TaskFactory extends Factory
 {
-    /**
-     * Define the model's default state.
+     /**
+     * The name of the factory's corresponding model.
      *
-     * @return array<string, mixed>
+     * @var class-string<\Illuminate\Database\Eloquent\Model>
      */
+    
+    protected $model = task::class;
+
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->sentence(2),
+            'priority' => $this->faker->randomElement(TaskPriority::cases()),
+            'status' => $this->faker->boolean(0.5),
+            'description' => $this->faker->text(100),
+            'user_id' => User::factory(),
         ];
     }
 }

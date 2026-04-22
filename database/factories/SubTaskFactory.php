@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\SubTaskPriority;
 use App\Models\SubTask;
+use App\Models\task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -10,15 +12,21 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class SubTaskFactory extends Factory
 {
-    /**
-     * Define the model's default state.
+   /**
+     * The name of the factory's corresponding model.
      *
-     * @return array<string, mixed>
+     * @var class-string<\Illuminate\Database\Eloquent\Model>
      */
+
+    protected $model = SubTask::class;
+
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->sentence(2),
+            'priority' => $this->faker->randomElement(SubTaskPriority::cases()),
+            'status' => $this->faker->boolean(0.5),
+            'task_id' => task::factory(),
         ];
     }
 }
