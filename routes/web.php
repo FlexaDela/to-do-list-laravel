@@ -10,11 +10,12 @@ Route::middleware('user-not-logged')->group(function () {
     Route::get('/registrar',[UserController::class,'register'])->name('register');
     Route::post('/registrar',[UserController::class,'registerConfirm'])->name('registerConfirm');
     });
-    
+
 Route::middleware('user-logged')->group(function() {
+
     Route::get('/', function() {
         return redirect('/tasks');
-        });
+    });
     Route::resource('/tasks', TaskController::class);
     Route::patch('/tasks/verificador/{task}/', [TaskController::class,'updateChecked'])->name('tasks.updateChecked');
     Route::post('/logout',[UserController::class,'logout'])->name('logout');

@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('task_id')->constrained()->onDelete('cascade');
             $table->string('name',100);
-            $table->enum('status',['proridade','importante','conceito'])->default('conceito');
-            $table->boolean('checked')->default(true);
-            $table->mediumText('description')->nullable();
+            $table->enum('priority',['initial','developing','finished'])->default('initial');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
