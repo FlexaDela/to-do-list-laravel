@@ -6,12 +6,15 @@ use App\Enums\SubTaskPriority;
 use Database\Factories\SubTaskFactory;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[UseFactory(SubTaskFactory::class)]
 class SubTask extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'priority',

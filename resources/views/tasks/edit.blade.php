@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>EDITAR TAREFA</h1>
-    
+
     <form method="POST" action="{{ route('tasks.update', $tasks->id) }}">
         @csrf
         @method('patch')
@@ -18,22 +18,22 @@
         </div>
 
         <div>
-            <label for="status">Status</label>
-            <select name="status" id="status">
-                @foreach(\App\Enums\TaskStatus::cases() as $status)
-                    <option value="{{ $status->value }}" 
-                        {{ old('status', $tasks->status->value ?? $tasks->status) == $status->value ? 'selected' : '' }}>
-                        {{ ucfirst($status->value) }}
+            <label for="priority">Status</label>
+            <select name="priority" id="priority">
+                @foreach(\App\Enums\TaskPriority::cases() as $priority)
+                    <option value="{{ $priority->value }}"
+                        {{ old('priority', $priority->status->value ?? $priority->status) == $priority->value ? 'selected' : '' }}>
+                        {{ ucfirst($priority->value) }}
                     </option>
                 @endforeach
             </select>
         </div>
-        
+
         <div>
             <label for="description">Descrição:</label>
             <textarea id="description" name="description" rows="5">{{ $tasks->description }}</textarea>
         </div>
-        
+
         <button type="submit">ATUALIZAR</button>
     </form>
 

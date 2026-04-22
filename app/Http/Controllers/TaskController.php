@@ -12,7 +12,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        
+
         $tasks = Auth::user()->tasks()->get();
 
        return view('tasks.index')->with('tasks', $tasks);
@@ -36,8 +36,8 @@ class TaskController extends Controller
 
     public function edit(task $task)
     {
-        
-     return view('tasks.edit')->with('tasks', $task);   
+
+     return view('tasks.edit')->with('tasks', $task);
     }
 
     public function update(Request $request,task $task)
@@ -55,7 +55,7 @@ class TaskController extends Controller
     public function updateChecked(task $task)
     {
         DB::transaction(function() use($task){
-            $task->checked = !$task->checked;
+            $task->status = !$task->status;
             $task->save();
         });
 
@@ -67,5 +67,5 @@ class TaskController extends Controller
         $task->delete();
 
         return redirect()->route('tasks.index');
-    } 
+    }
 }

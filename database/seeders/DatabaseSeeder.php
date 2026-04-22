@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SubTask;
 use App\Models\task;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -19,15 +20,17 @@ class DatabaseSeeder extends Seeder
         $user = User::where('email','flexa@gmail.com')->first();
 
         if($user){
+
             Task::factory()
             ->count(10)
+            ->has(SubTask::factory()->count(4))
             ->create([
                 'user_id' =>$user->id,
             ]);
         }
 
 
-        
+
         /***
          * User::factory()->create([
             'name' => 'teste',
