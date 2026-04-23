@@ -44,6 +44,6 @@ class task extends Model
 
     public function subTask(): HasMany
     {
-        return $this->hasMany(task::class);
+        return $this->hasMany(SubTask::class);
     }
 }

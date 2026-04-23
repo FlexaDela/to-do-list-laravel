@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[UseFactory(SubTaskFactory::class)]
+
 class SubTask extends Model
 {
     use HasFactory;
@@ -35,6 +36,6 @@ class SubTask extends Model
 
     public function task(): BelongsTo
     {
-        return $this->belongsTo(SubTask::class);
+        return $this->belongsTo(task::class);
     }
 }

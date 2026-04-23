@@ -15,7 +15,7 @@ class TaskController extends Controller
 
     public function index()
     {
-        
+
         $tasks = Auth::user()->tasks()->get();
 
        return view('tasks.index')->with('tasks', $tasks);
@@ -39,12 +39,15 @@ class TaskController extends Controller
 
     public function edit(task $task)
     {
+        $this->authorize('update',$task);
 
-     return view('tasks.edit')->with('tasks', $task);
+        return view('tasks.edit')->with('tasks', $task);
     }
 
     public function update(Request $request,task $task)
     {
+        $this->authorize('update',$task);
+
         $task->update($request->all());
 
         return redirect()->route('tasks.edit', $task->id);

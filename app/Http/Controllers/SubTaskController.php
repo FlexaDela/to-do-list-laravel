@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSubTaskRequest;
 use App\Http\Requests\UpdateSubTaskRequest;
 use App\Models\SubTask;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class SubTaskController extends Controller
 {
+
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +33,7 @@ class SubTaskController extends Controller
      */
     public function store(StoreSubTaskRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -37,7 +41,7 @@ class SubTaskController extends Controller
      */
     public function show(SubTask $subTask)
     {
-        //
+        $this->authorize('view', $subTask);
     }
 
     /**
@@ -45,7 +49,7 @@ class SubTaskController extends Controller
      */
     public function edit(SubTask $subTask)
     {
-        //
+        $this->authorize('update',$subTask);
     }
 
     /**
@@ -53,7 +57,7 @@ class SubTaskController extends Controller
      */
     public function update(UpdateSubTaskRequest $request, SubTask $subTask)
     {
-        //
+        $this->authorize('update',$subTask);
     }
 
     /**
@@ -61,6 +65,6 @@ class SubTaskController extends Controller
      */
     public function destroy(SubTask $subTask)
     {
-        //
+        $this->authorize('delete',$subTask);
     }
 }

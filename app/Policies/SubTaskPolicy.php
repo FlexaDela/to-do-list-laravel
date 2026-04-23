@@ -21,7 +21,7 @@ class SubTaskPolicy
      */
     public function view(User $user, SubTask $subTask): bool
     {
-        return false;
+         return $user->id === $subTask->task->user_id;
     }
 
     /**
@@ -37,7 +37,7 @@ class SubTaskPolicy
      */
     public function update(User $user, SubTask $subTask): bool
     {
-        return false;
+        return $user->id === $subTask->task->user_id;
     }
 
     /**
@@ -45,22 +45,6 @@ class SubTaskPolicy
      */
     public function delete(User $user, SubTask $subTask): bool
     {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, SubTask $subTask): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, SubTask $subTask): bool
-    {
-        return false;
+        return $user->id === $subTask->task->user_id;
     }
 }
