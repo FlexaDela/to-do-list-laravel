@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TaskPostRequest;
 use Illuminate\Http\Request;
 use App\Models\task;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
-
+        
         $tasks = Auth::user()->tasks()->get();
 
        return view('tasks.index')->with('tasks', $tasks);
@@ -49,11 +52,15 @@ class TaskController extends Controller
 
     public function show(task $task)
     {
+        $this->authorize('view', $task);
+
         return view('tasks.show')->with('task', $task);
     }
 
     public function updateChecked(task $task)
     {
+        $this->authorize('updateChecked', $task);
+
         DB::transaction(function() use($task){
             $task->status = !$task->status;
             $task->save();
@@ -64,6 +71,8 @@ class TaskController extends Controller
 
     public function destroy(task $task)
     {
+        $this->authorize('delete', $task);
+
         $task->delete();
 
         return redirect()->route('tasks.index');

@@ -21,7 +21,7 @@ class taskPolicy
      */
     public function view(User $user, task $task): bool
     {
-        return false;
+        return $user->id === $task->user_id;
     }
 
     /**
@@ -37,7 +37,7 @@ class taskPolicy
      */
     public function update(User $user, task $task): bool
     {
-        return false;
+        return $user->id === $task->user_id;
     }
 
     /**
@@ -45,22 +45,13 @@ class taskPolicy
      */
     public function delete(User $user, task $task): bool
     {
-        return false;
+        return $user->id === $task->user_id;
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, task $task): bool
+
+    public function updateChecked(User $user, task $task): bool
     {
-        return false;
+        return $user->id === $task->user_id;
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, task $task): bool
-    {
-        return false;
-    }
 }
