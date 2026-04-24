@@ -1,12 +1,13 @@
 <x-layout>
 
     <h1 class="container mt-5">GERENCIADOR TODO-LIST</h1>
-    <a href="{{ route('tasks.create') }}">CRIAR TAREFA</a>
     <form method="post" action="{{ route('logout') }}">
         @csrf
         <button type="submit">logout</button>
     </form>
 
+    <a href="{{ route('tasks.create') }}">CRIAR TAREFA</a>
+    
     @if ($tasks->isNotEmpty())
         <div class="table-responsive">
             <table class="table table-striped table-hover mt-4">
