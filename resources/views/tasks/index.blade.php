@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task</title>
+<x-layout>
 
-    @vite(['resources/css/app.scss','resources/js/app.js'])
-</head>
-<body>
     <h1 class="container mt-5">GERENCIADOR TODO-LIST</h1>
     <a href="{{ route('tasks.create') }}">CRIAR TAREFA</a>
     <form method="post" action="{{ route('logout') }}">
@@ -82,5 +74,4 @@
         <p>Não tem tarefas cadastradas</p>
     @endif
 
-</body>
-</html>
+</x-layout>
