@@ -1,5 +1,5 @@
 <x-layout title="Criar">
-    <x-form method="POST" action="{{ route('tasks.store') }}">
+    <x-form action="{{ route('tasks.store') }}">
         @csrf
         <div>
             <label for="name">Nome da tarefa:</label>

@@ -1,3 +1,3 @@
-<form method="{{ $method }}" action="{{ $action }}">
+<form method="POST" action="{{ $action }}">
     {{ $slot }}
 </form>

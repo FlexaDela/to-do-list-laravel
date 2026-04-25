@@ -1,6 +1,6 @@
 <x-layout title="Editar">
 
-    <form method="POST" action="{{ route('tasks.update', $tasks->id) }}">
+    <x-form action="{{ route('tasks.update', $tasks->id) }}">
         @csrf
         @method('patch')
 
@@ -27,8 +27,8 @@
         </div>
 
         <button type="submit">ATUALIZAR</button>
-    </form>
+    </x-form>
 
     <a href="{{ route('tasks.index') }}">voltar</a>
-    
+
 </x-layout>
