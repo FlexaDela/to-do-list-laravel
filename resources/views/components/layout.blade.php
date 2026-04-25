@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }}</title>
+    <title> {{ $title }} - TODOLIST </title>
 
     @vite(['resources/css/app.scss','resources/js/app.js'])
 </head>
@@ -11,8 +11,7 @@
 
     <x-header />
 
-    <div class="container">
-        {{ $slot }}
-    </div>
+    {{ $slot }}
+
 </body>
 </html>

@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAREFA - EDITAR</title>
-</head>
-<body>
-    <h1>EDITAR TAREFA</h1>
+<x-layout title="Editar">
 
     <form method="POST" action="{{ route('tasks.update', $tasks->id) }}">
         @csrf
@@ -38,5 +30,5 @@
     </form>
 
     <a href="{{ route('tasks.index') }}">voltar</a>
-</body>
-</html>
+    
+</x-layout>

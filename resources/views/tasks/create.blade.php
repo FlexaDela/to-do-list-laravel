@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAREFA CRIAÇÃO</title>
-</head>
-<body>
-    <h1>CRIAR TAREFA</h1>
-
-    @if ($errors)
-        <div style="color: red;">
-            {{ $errors }}
-        </div>
-    @endif
-    <form method="POST" action="{{ route('tasks.store') }}">
+<x-layout title="Criar">
+    <x-form method="POST" action="{{ route('tasks.store') }}">
         @csrf
         <div>
             <label for="name">Nome da tarefa:</label>
@@ -24,10 +10,9 @@
             <label for="description">Descrição:</label>
             <textarea type="text" id="description"></textarea>
         </div>
-        
+
         <button type="submit">CRIAR</button>
-    </form>
+    </x-form>
 
     <a href="{{ route('tasks.index') }}">voltar</a>
-</body>
-</html>
+</x-layout>

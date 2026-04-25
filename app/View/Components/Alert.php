@@ -6,13 +6,13 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Layout extends Component
+class Alert extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $title
+        public string $type
     )
     {}
 
@@ -21,6 +21,6 @@ class Layout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layout');
+        return view('components.alert');
     }
 }

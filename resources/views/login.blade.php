@@ -1,31 +1,41 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
-</head>
-<body>
+<x-layout title="Login">
+
     @if ($errors->has('email'))
         <div style="color: red;">
             {{ $errors->first('email') }}
         </div>
-    @endif    
-    <form method="POST" action="{{ route('singIn') }}">
-        @csrf
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
+    @endif
 
-        <div>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        
-        <button type="submit">Entrar</button>
-    </form>
+    <section class="vh-100">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-5">
+                    <h2 class="text-uppercase text-center mb-5">LOGIN TODOLIST</h2>
 
-    <a href="{{ route('register') }}">Registrar-se</a>
-</body>
-</html>
+                    <form method="POST" action="{{ route('singIn') }}">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <label for="email">Email:</label>
+                            <input class="form-control" type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="password">Senha:</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                        <a href="{{ route('register') }}" class="fw-bold text-body text-center mt-05 mb-0">Registrar-se</a>
+                    </form>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+</x-layout>
