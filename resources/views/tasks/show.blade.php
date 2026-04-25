@@ -1,6 +1,6 @@
 <x-layout title="{{ $task->name }}">
 
-    <h1 class="container mt-5">TAREFA {{ $task->name }}</h1>
+    <h1 class="container mt-5">TAREFA: {{ $task->name }}</h1>
         <div>PRIORIDADE: {{ $task->phase}}</div>
         <div>DESCRIÇÃO:{{ $task->description}}</div>
         <div>STATUS:{{ $task->status}}</div>

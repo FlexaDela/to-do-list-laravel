@@ -6,12 +6,12 @@
                 <h1 class="fw-bold text-info mb-0">Gerenciador Todo-List</h1>
                 <p class="text-secondary small">Organize o seu fluxo de trabalho noturno.</p>
             </div>
-            <form method="post" action="{{ route('logout') }}">
+            <x-form action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="btn btn-outline-danger btn-sm">
                     Sair
                 </button>
-            </form>
+            </x-form>
         </div>
 
         <div class="mb-4 text-end">
