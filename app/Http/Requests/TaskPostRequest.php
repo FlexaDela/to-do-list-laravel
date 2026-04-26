@@ -23,7 +23,8 @@ class TaskPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:3', 'max:100'],
+            'name' => ['string','required', 'min:3', 'max:100'],
+            'description' => ['string','max:100'],
         ];
     }
 }

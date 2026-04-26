@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskEditRequest;
 use App\Http\Requests\TaskPostRequest;
 use Illuminate\Http\Request;
 use App\Models\task;
@@ -48,10 +49,11 @@ class TaskController extends Controller
         return view('tasks.edit')->with('tasks', $task)->with('successMensage',$successMensage);
     }
 
-    public function update(Request $request,task $task)
+    public function update(TaskEditRequest $request,task $task)
     {
         $this->authorize('update',$task);
-        $task->update($request->all());
+        $task->update($request->validated());
+
         $request->session()->flash('success.menssage', 'Tarefa atualizada com sucesso');
 
         return to_route('tasks.edit', $task->id);
