@@ -20,6 +20,12 @@
             </a>
         </div>
 
+        @isset($messageSuccess)
+            <x-alert type="success">
+                {{ $messageSuccess }}
+            </x-alert>
+        @endisset
+
         @if ($tasks->isNotEmpty())
             <div class="card bg-dark border-secondary shadow-lg">
                 <div class="card-body p-0">

@@ -40,7 +40,9 @@
 
                                     <button type="submit" class="btn btn-primary">Registrar</button>
 
-                                    <a href="{{ route('login') }}" class="fw-bold text-body text-center mt-05 mb-0">Login</a>
+                                    <div class="text-end">
+                                        <a href="{{ route('login') }}" class="fw-bold text-body text-center">Fazer Login</a>
+                                    </div>
                                 </x-form>
 
                             </div>

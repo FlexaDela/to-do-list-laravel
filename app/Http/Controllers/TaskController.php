@@ -13,12 +13,13 @@ class TaskController extends Controller
 {
     use AuthorizesRequests;
 
-    public function index()
+    public function index(Request $request)
     {
 
         $tasks = Auth::user()->tasks()->get();
+        $messageSuccess = $request->session()->get('success.menssage');
 
-       return view('tasks.index')->with('tasks', $tasks);
+       return view('tasks.index')->with('tasks', $tasks)->with('messageSuccess', $messageSuccess);
     }
 
     public function create(Request $request)
@@ -30,37 +31,39 @@ class TaskController extends Controller
     {
         $data = $request->validated();
 
-        DB::transaction(function() use($data){
-            Auth::user()->tasks()->create($data);
+        $task = DB::transaction(function() use($data){
+            return Auth::user()->tasks()->create($data);
         });
 
-        return redirect()->route('tasks.index');
+        $request->session()->flash('success.menssage', "Tarefa: '{$task->name}' criada com sucesso");
+
+        return to_route('tasks.index');
     }
 
-    public function edit(task $task)
+    public function edit(task $task, Request $request)
     {
         $this->authorize('update',$task);
+        $successMensage = $request->session()->get('success.menssage');
 
-        return view('tasks.edit')->with('tasks', $task);
+        return view('tasks.edit')->with('tasks', $task)->with('successMensage',$successMensage);
     }
 
     public function update(Request $request,task $task)
     {
         $this->authorize('update',$task);
-
         $task->update($request->all());
+        $request->session()->flash('success.menssage', 'Tarefa atualizada com sucesso');
 
-        return redirect()->route('tasks.edit', $task->id);
+        return to_route('tasks.edit', $task->id);
     }
 
-    public function show(task $task)
+    public function show(task $task, Request $request)
     {
         $this->authorize('view', $task);
-
         return view('tasks.show')->with('task', $task);
     }
 
-    public function updateChecked(task $task)
+    public function updateChecked(task $task, Request $request)
     {
         $this->authorize('updateChecked', $task);
 
@@ -72,12 +75,14 @@ class TaskController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(task $task)
+    public function destroy(Request $request, task $task)
     {
         $this->authorize('delete', $task);
 
         $task->delete();
 
-        return redirect()->route('tasks.index');
+        $request->session()->flash('success.menssage',"Tarefa: '{$task->name}' deletada com sucesso");
+
+        return to_route('tasks.index');
     }
 }
