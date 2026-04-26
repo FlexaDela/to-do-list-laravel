@@ -34,7 +34,10 @@
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Entrar</button>
-                                    <a href="{{ route('register') }}" class="fw-bold text-body text-center mt-05 mb-0">Registrar-se</a>
+
+                                    <div class="text-end">
+                                        <a href="{{ route('register') }}" class="fw-bold text-body text-center">Registrar-se</a>
+                                    </div>
                                 </x-form>
 
                             </div>
