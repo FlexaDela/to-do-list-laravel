@@ -75,4 +75,14 @@ class SubTaskController extends Controller
 
         return redirect()->back();
     }
+
+     public function updateChecked(SubTask $subTask,Request $request)
+    {
+        $this->authorize('updateChecked', $subTask);
+
+        $subTask->status = !$subTask->status;
+        $subTask->save();
+
+        return redirect()->back();
+    }
 }

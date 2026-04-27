@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubTaskController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +22,6 @@ Route::middleware('user-logged')->group(function() {
     Route::patch('/tasks/verificador/{task}/', [TaskController::class,'updateChecked'])->name('tasks.updateChecked');
     Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
-    Route::resource('/{task}/subtasks', UserController::class)->except('show');
+    Route::resource('tasks.subtasks', UserController::class)->except('show');
+    Route::patch('/tasks/verificador/{task}/{subTask}', [SubTaskController::class,'updateChecked'])->name('subTasks.updateChecked');
 });

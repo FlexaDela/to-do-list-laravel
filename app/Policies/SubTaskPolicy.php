@@ -47,4 +47,9 @@ class SubTaskPolicy
     {
         return $user->id === $subTask->task->user_id;
     }
+
+     public function updateChecked(User $user, SubTask $subTask): bool
+    {
+        return $user->id === $subTask->task->user_id;
+    }
 }
