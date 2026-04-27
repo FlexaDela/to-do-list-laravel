@@ -9,7 +9,8 @@ Route::middleware('user-not-logged')->group(function () {
     Route::post('/login',[UserController::class,'loginConfirm'])->name('singIn');
     Route::get('/registrar',[UserController::class,'register'])->name('register');
     Route::post('/registrar',[UserController::class,'registerConfirm'])->name('registerConfirm');
-    });
+});
+
 
 Route::middleware('user-logged')->group(function() {
 
@@ -19,4 +20,6 @@ Route::middleware('user-logged')->group(function() {
     Route::resource('/tasks', TaskController::class);
     Route::patch('/tasks/verificador/{task}/', [TaskController::class,'updateChecked'])->name('tasks.updateChecked');
     Route::post('/logout',[UserController::class,'logout'])->name('logout');
+
+    Route::resource('/{task}/subtasks', UserController::class)->except('show');
 });

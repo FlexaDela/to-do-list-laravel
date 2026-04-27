@@ -33,9 +33,7 @@ class TaskController extends Controller
     {
         $data = $request->validated();
 
-        $task = DB::transaction(function() use($data){
-            return Auth::user()->tasks()->create($data);
-        });
+        $task = Auth::user()->tasks()->create($data);
 
         $request->session()->flash('success.menssage', "Tarefa: '{$task->name}' criada com sucesso");
 
