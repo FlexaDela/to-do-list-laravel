@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\SubTaskPriority;
+use App\Enums\TaskPriority;
 use Database\Factories\SubTaskFactory;
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,7 +24,7 @@ class SubTask extends Model
         ];
 
     protected $casts = [
-        'phase' => SubTaskPriority::class,
+        'phase' => TaskPriority::class,
         'status' => 'boolean',
     ];
 

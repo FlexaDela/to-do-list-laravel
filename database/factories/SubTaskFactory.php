@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\SubTaskPriority;
+use App\Enums\TaskPriority;
 use App\Models\SubTask;
 use App\Models\task;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -24,7 +24,7 @@ class SubTaskFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(2),
-            'phase' => $this->faker->randomElement(SubTaskPriority::cases()),
+            'phase' => $this->faker->randomElement(TaskPriority::cases()),
             'status' => $this->faker->boolean(0.5),
             'task_id' => task::factory(),
         ];

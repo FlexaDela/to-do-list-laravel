@@ -7,6 +7,7 @@ use App\Models\task;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $password = '123';
+        User::factory()->create(["email"=>"flexa@gmail.com","password" => Hash::make($password)]);
+
         $user = User::where('email','flexa@gmail.com')->first();
 
         if($user){

@@ -26,7 +26,7 @@ class TaskFactory extends Factory
         return [
             'name' => $this->faker->sentence(2),
             'phase' => $this->faker->randomElement(TaskPriority::cases()),
-            'status' => $this->faker->boolean(0.5),
+            'status' => $this->faker->boolean(),
             'description' => $this->faker->text(100),
             'user_id' => User::factory(),
         ];
