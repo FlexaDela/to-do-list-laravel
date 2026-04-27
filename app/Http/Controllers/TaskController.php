@@ -6,6 +6,7 @@ use App\Http\Requests\TaskEditRequest;
 use App\Http\Requests\TaskPostRequest;
 use Illuminate\Http\Request;
 use App\Models\task;
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -59,10 +60,13 @@ class TaskController extends Controller
         return to_route('tasks.edit', $task->id);
     }
 
-    public function show(task $task, Request $request)
+    public function show(task $task)
     {
         $this->authorize('view', $task);
-        return view('tasks.show')->with('task', $task);
+
+        $subTask = $task->subTask()->get();
+
+        return view('tasks.show')->with('task', $task)->with('subTask', $subTask);
     }
 
     public function updateChecked(task $task, Request $request)

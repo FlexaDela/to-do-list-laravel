@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSubTaskRequest;
-use App\Http\Requests\UpdateSubTaskRequest;
+use App\Http\Requests\SubTaskRequest;
 use App\Models\SubTask;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Symfony\Component\HttpFoundation\Request;
 
 class SubTaskController extends Controller
 {
@@ -13,17 +13,9 @@ class SubTaskController extends Controller
     use AuthorizesRequests;
 
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(SubTaskRequest $request)
     {
         //
     }
@@ -31,9 +23,9 @@ class SubTaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSubTaskRequest $request)
+    public function store(SubTaskRequest $request)
     {
-        
+
     }
 
     /**
@@ -55,7 +47,7 @@ class SubTaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSubTaskRequest $request, SubTask $subTask)
+    public function update(SubTaskRequest $request, SubTask $subTask)
     {
         $this->authorize('update',$subTask);
     }
