@@ -17,9 +17,9 @@ class SubTaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request, task $task)
     {
-        return view('subTask.create');
+        return view('subTask.create')->with("task",$task);
     }
 
     /**
@@ -28,9 +28,8 @@ class SubTaskController extends Controller
     public function store(SubTaskRequest $request, task $task)
     {
         $data = $request->validated();
-        $data['task_id'] = $task->id;
-
-        $subtask = SubTask::create($data);
+        
+        $subtask = $task->subTask()->create($data);
 
         $request->session()->flash('menssage.success',"Sub-tarefa:'$subtask->name' criada com sucesso");
 

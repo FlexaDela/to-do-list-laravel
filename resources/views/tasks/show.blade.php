@@ -77,7 +77,7 @@
                         @endforelse
                     </div>
                     <div class="card-footer border-secondary text-center">
-                        <button class="btn btn-sm btn-outline-info w-100">+ Adicionar Subtarefa</button>
+                        <a href="{{ route('tasks.subtasks.create',$task->id) }}" class="btn btn-sm btn-outline-info w-100"> Adicionar Subtarefa</a>
                     </div>
                 </div>
             </div>
