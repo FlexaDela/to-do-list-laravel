@@ -58,13 +58,15 @@ class TaskController extends Controller
         return to_route('tasks.edit', $task->id);
     }
 
-    public function show(task $task)
+    public function show(task $task, Request $request)
     {
         $this->authorize('view', $task);
 
-        $subTask = $task->subTask()->get();
+        $messageSuccess = $request->session()->get('menssage.success');
 
-        return view('tasks.show')->with('task', $task)->with('subTask', $subTask);
+        $subTasks = $task->subTask()->get();
+
+        return view('tasks.show')->with('task', $task)->with('subTasks', $subTasks)->with('messageSuccess',$messageSuccess);
     }
 
     public function updateChecked(task $task, Request $request)

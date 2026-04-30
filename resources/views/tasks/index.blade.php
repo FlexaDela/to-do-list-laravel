@@ -44,13 +44,13 @@
                                 @foreach ($tasks as $task)
                                 <tr>
                                     <td class="ps-4">
-                                        <form action="{{ route('tasks.updateChecked', $task->id) }}" method="post">
+                                        <x-form action="{{ route('tasks.updateChecked', $task->id) }}">
                                             @csrf
                                             @method('PATCH')
                                             <button type="submit" class="btn btn-sm {{ $task->status == 0 ? 'btn-success' : 'btn-outline-secondary' }} rounded-circle">
                                                 ✓
                                             </button>
-                                        </form>
+                                        </x-form>
                                     </td>
 
                                     <td>

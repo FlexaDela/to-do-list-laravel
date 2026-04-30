@@ -9,6 +9,11 @@
 
         <div class="row g-4">
             <div class="col-lg-8">
+                @isset($messageSuccess)
+                    <x-alert type="success">
+                        {{ $messageSuccess }}
+                    </x-alert>
+                @endisset
                 <div class="card bg-dark border-secondary shadow-lg h-100">
                     <div class="card-header border-secondary d-flex justify-content-between align-items-center py-3">
                         <h2 class="mb-0 text-info fw-bold">{{ $task->name }}</h2>
@@ -55,20 +60,31 @@
                 <div class="card bg-dark border-secondary shadow-sm">
                     <div class="card-header border-secondary bg-transparent d-flex justify-content-between align-items-center">
                         <h6 class="text-info fw-bold mb-0">Subtarefas</h6>
-                        <span class="badge bg-secondary">{{ $subTask->count() }}</span>
+                        <span class="badge bg-secondary">{{ $subTasks->count() }}</span>
                     </div>
                     <div class="list-group list-group-flush bg-dark">
-                        @forelse ($subTask as $sub)
+                        @forelse ($subTasks as $subTask)
                             <div class="list-group-item bg-dark border-secondary d-flex justify-content-between align-items-center py-3">
                                 <div>
-                                    <div class="text-light fw-bold">{{ $sub->name }}</div>
-                                    <small class="text-secondary">{{ ucfirst($sub->phase->value) }}</small>
+                                    <div class="text-light fw-bold"><a href="{{ route('tasks.subtasks.edit',['task'=>$task->id, 'subtask' => $subTask->id]) }}">{{ $subTask->name }}</a></div>
+                                    <small class="text-secondary">{{ ucfirst($subTask->phase->value) }}</small>
                                 </div>
-                                @if($sub->status)
-                                    <span class="badge border border-success text-success">Pendente</span>
+                                @if($subTask->status)
+                                    <x-form action="{{ route('subTasks.updateChecked',['task' => $task->id,'subTask' => $subTask->id]) }}">
+                                        @method('PATCH')
+                                        <button type="submit" class="badge border border-success text-success">Pendente</button>
+                                    </x-form>
                                 @else
-                                    <span class="badge bg-success text-white">Concluída</span>
+                                    <x-form action="{{ route('subTasks.updateChecked',['task' => $task->id, 'subTask' => $subTask->id]) }}">
+                                        @method('PATCH')
+                                        <button type="submit" class="badge bg-success text-white">Concluída</button>
+                                    </x-form>
                                 @endif
+
+                                <x-form action="{{ route('tasks.subtasks.destroy',['task' => $task->id, 'subtask' => $subTask->id]) }}">
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger text-white">Deletar</button>
+                                </x-form>
                             </div>
                         @empty
                             <div class="list-group-item bg-dark border-secondary text-secondary text-center py-4">

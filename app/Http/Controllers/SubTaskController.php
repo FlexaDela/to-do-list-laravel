@@ -6,8 +6,7 @@ use App\Http\Requests\SubTaskRequest;
 use App\Models\SubTask;
 use App\Models\task;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Support\Facades\Request;
-
+use Illuminate\Http\Request;
 
 class SubTaskController extends Controller
 {
@@ -28,7 +27,7 @@ class SubTaskController extends Controller
     public function store(SubTaskRequest $request, task $task)
     {
         $data = $request->validated();
-        
+
         $subtask = $task->subTask()->create($data);
 
         $request->session()->flash('menssage.success',"Sub-tarefa:'$subtask->name' criada com sucesso");
@@ -64,18 +63,19 @@ class SubTaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SubTask $subTask, Request $request)
+    public function destroy(task $task ,SubTask $subtask, Request $request)
     {
-        $this->authorize('delete',$subTask);
 
-        $subTask->delete();
+        $this->authorize('delete',$subtask);
 
-        $request->session()->flash('menssage.success',"SubTarefa deletada com sucesso");
+        $subtask->delete();
+
+        $request->session()->flash('menssage.success',"SubTarefa: '{$subtask->name}' deletada com sucesso");
 
         return redirect()->back();
     }
 
-     public function updateChecked(SubTask $subTask,Request $request)
+     public function updateChecked(task $task, SubTask $subTask)
     {
         $this->authorize('updateChecked', $subTask);
 
